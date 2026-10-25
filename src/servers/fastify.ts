@@ -28,12 +28,13 @@ export class FastifyServer extends Server {
   }
 
   /** @private */
-  createEndpoint(path: string, handler: ServerRequestHandler) {
+  createEndpoint(path: string, handler: ServerRequestHandler): void {
     this.app.register(async (app: any) => {
-      // Capture and set the raw payload with a scoped parser
+      // Replace the inherited parser only in this scope to capture the raw payload.
+      app.removeContentTypeParser('application/json');
       app.addContentTypeParser(
         'application/json',
-        { parseAs: 'string', asString: true },
+        { parseAs: 'string' },
         (request: any, payload: any, done: any) => {
           request.rawBody = payload;
           app.getDefaultJsonParser('remove', 'remove')(request, payload, done);

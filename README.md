@@ -46,7 +46,7 @@ In order to use a specific webserver, you will need to install the dependency as
 - `BunServer`: none, meant for use in the [Bun](https://bun.sh) runtime
 - `CloudflareWorkerServer`: none, only available in the web export via `slash-create/web`
 - `ExpressServer`: `express`
-- `FastifyServer`: `fastify`
+- `FastifyServer`: `fastify` v3, v4, or v5 (v5 requires Node.js 20+)
 - `GenericServer`: none, used for frameworks that use the `Request` and `Response` objects, see [example](https://slash-create.js.org/#/docs/main/latest/examples/generic)
 - `GatewayServer`: none, see [example](https://slash-create.js.org/#/docs/main/latest/examples/discord-bot)
 - `GCFServer`: none technically, meant for use with [`@google-cloud/functions-framework`](https://npm.im/@google-cloud/functions-framework), see [example](https://slash-create.js.org/#/docs/main/latest/examples/gcf)

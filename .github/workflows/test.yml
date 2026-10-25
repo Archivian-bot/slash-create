@@ -18,11 +18,12 @@ on:
 
 jobs:
   test:
-    name: Run tests (Node ${{ matrix.node-version }})
+    name: Run tests (Node ${{ matrix.node-version }}, Fastify ${{ matrix.fastify-version }})
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [18.x, 24.x]
+        node-version: [22.x, 24.x]
+        fastify-version: [3, 4, 5]
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -42,6 +43,9 @@ jobs:
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
+
+      - name: Select Fastify version
+        run: pnpm add --save-dev --lockfile=false --ignore-scripts fastify@${{ matrix.fastify-version }}
 
       - name: Run Tests
         run: pnpm run test
